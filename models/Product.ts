@@ -29,7 +29,7 @@ const productSchema = new Schema(
         gender: {
             type: String,
             enum: {
-                values: ['men', 'women', 'kid'],
+                values: ['men', 'women', 'kid', 'unisex'],
                 message: '{VALUE} is not a supported gender'
             }
         }
@@ -40,6 +40,7 @@ const productSchema = new Schema(
 )
 
 // TODO: Crear undinde de Mongo
+productSchema.index({ title: 'text', tags: 'text' })
 
 const Product: Model<IProduct> =
     mongoose.models.Product || model('Product', productSchema)
