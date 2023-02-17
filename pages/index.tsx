@@ -4,9 +4,10 @@ import { ProductList } from '../components/products'
 import { NextPage } from 'next'
 import { useProducts } from '../hooks'
 import { FullScreenLoading } from '../components/ui'
+import { IProduct } from '../interfaces'
 
 const HomePage: NextPage = () => {
-    const { products, isLoading } = useProducts('/products')
+    const { products, isLoading } = useProducts<IProduct[]>('/products')
 
     return (
         <ShopLayout

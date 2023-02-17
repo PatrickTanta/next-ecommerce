@@ -9,8 +9,18 @@ import {
     Typography
 } from '@mui/material'
 import { SearchOutlined, ShoppingCartOutlined } from '@mui/icons-material'
+import { useRouter } from 'next/router'
+import { useContext } from 'react'
+import { UiContext } from '../../context/ui'
 
 export const Navbar = () => {
+    const { asPath } = useRouter()
+
+    const { toggleSideMenu } = useContext(UiContext)
+    const handleMenuClick = () => {
+        toggleSideMenu()
+    }
+
     return (
         <AppBar>
             <Toolbar>
@@ -23,13 +33,33 @@ export const Navbar = () => {
 
                 <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                     <NextLink href="/category/men" passHref>
-                        <Button>Nombres</Button>
+                        <Button
+                            color={
+                                asPath === '/category/men' ? 'primary' : 'info'
+                            }
+                        >
+                            Nombres
+                        </Button>
                     </NextLink>
                     <NextLink href="/category/women" passHref>
-                        <Button>Mujeres</Button>
+                        <Button
+                            color={
+                                asPath === '/category/women'
+                                    ? 'primary'
+                                    : 'info'
+                            }
+                        >
+                            Mujeres
+                        </Button>
                     </NextLink>
                     <NextLink href="/category/kid" passHref>
-                        <Button>Niños</Button>
+                        <Button
+                            color={
+                                asPath === '/category/kid' ? 'primary' : 'info'
+                            }
+                        >
+                            Niños
+                        </Button>
                     </NextLink>
                 </Box>
 
@@ -47,7 +77,7 @@ export const Navbar = () => {
                     </IconButton>
                 </NextLink>
 
-                <Button>Menú</Button>
+                <Button onClick={handleMenuClick}>Menú</Button>
             </Toolbar>
         </AppBar>
     )

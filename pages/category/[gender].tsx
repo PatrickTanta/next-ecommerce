@@ -6,18 +6,23 @@ import { ShopLayout } from '../../components/layouts'
 import { ProductList } from '../../components/products'
 import { FullScreenLoading } from '../../components/ui'
 import { useEffect } from 'react'
+import { SHOP_CONSTANTS } from '../../database/constants'
+import { IProduct } from '../../interfaces'
 
 const CategoryDetail: NextPage = () => {
     const router = useRouter()
 
-    const { gender = 'all' } = router.query
-
-    console.log('gender ', gender)
-
-    const { products, isLoading } = useProducts(`/products?gender=${gender}`)
+    const { gender = 'unisex' } = router.query as { gender: string }
     useEffect(() => {
-        console.log('GENDER')
-    })
+        if (!SHOP_CONSTANTS.validGenders.includes(gender)) {
+            router.push('/404')
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [gender])
+
+    const { products, isLoading } = useProducts<IProduct[]>(
+        `/products?gender=${gender}`
+    )
 
     return (
         <ShopLayout

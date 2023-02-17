@@ -35,5 +35,5 @@ const getProductDetail = async (
         })
     }
 
-    return res.status(200).json(currentProduct)
+    return res.status(200).json(currentProduct || {})
 }

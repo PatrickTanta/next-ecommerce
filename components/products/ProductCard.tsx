@@ -6,8 +6,9 @@ import {
     Grid,
     Typography
 } from '@mui/material'
-import { useMemo, useState } from 'react'
+import { useMemo, useState, FC } from 'react'
 import NextLink from 'next/link'
+import { IProduct } from '../../interfaces/products'
 
 interface Props {
     product: IProduct
@@ -32,7 +33,11 @@ export const ProductCard: FC<Props> = ({ product }) => {
             onMouseLeave={() => setIsHovered(false)}
         >
             <Card>
-                <NextLink href="/product/slug" passHref prefetch={false}>
+                <NextLink
+                    href={`/product/${product.slug}`}
+                    passHref
+                    prefetch={false}
+                >
                     <CardActionArea>
                         <CardMedia
                             component="img"

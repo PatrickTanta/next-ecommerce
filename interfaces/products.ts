@@ -1,6 +1,6 @@
 export interface IProduct {
     description: string
-    images: string
+    images: string[]
     inStock: number
     price: number
     sizes: ISize[]
