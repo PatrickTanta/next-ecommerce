@@ -12,7 +12,7 @@ const mongoConnection = {
 
 export const connect = async () => {
     if (mongoConnection.isConnected) {
-        console.log('Ya estabamos conectados')
+        console.log('Ya estamos conectados')
         return
     }
 
@@ -23,7 +23,7 @@ export const connect = async () => {
             console.log('Usando conexión anterior')
             return
         }
-
+        mongoose.set('strictQuery', false)
         await mongoose.disconnect()
     }
 

@@ -5,16 +5,30 @@ import {
     Box,
     Button,
     IconButton,
+    Input,
+    InputAdornment,
     Toolbar,
     Typography
 } from '@mui/material'
-import { SearchOutlined, ShoppingCartOutlined } from '@mui/icons-material'
+import {
+    ClearOutlined,
+    SearchOutlined,
+    ShoppingCartOutlined
+} from '@mui/icons-material'
 import { useRouter } from 'next/router'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { UiContext } from '../../context/ui'
 
 export const Navbar = () => {
-    const { asPath } = useRouter()
+    const { asPath, push } = useRouter()
+
+    const [searchTerm, setSearchTerm] = useState('')
+    const [isSearchVisible, setIsSearchVisible] = useState(false)
+
+    const onSearchTerm = () => {
+        if (!searchTerm.trim().length) return
+        push(`/search/${searchTerm}`)
+    }
 
     const { toggleSideMenu } = useContext(UiContext)
     const handleMenuClick = () => {
@@ -31,7 +45,13 @@ export const Navbar = () => {
 
                 <Box flex={1} />
 
-                <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                <Box
+                    sx={{
+                        display: isSearchVisible
+                            ? 'none'
+                            : { xs: 'none', sm: 'block' }
+                    }}
+                >
                     <NextLink href="/category/men" passHref>
                         <Button
                             color={
@@ -65,7 +85,42 @@ export const Navbar = () => {
 
                 <Box flex={1} />
 
-                <IconButton>
+                {/* desktop */}
+                {isSearchVisible ? (
+                    <Input
+                        autoFocus
+                        type="text"
+                        placeholder="Buscar..."
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={() => setIsSearchVisible(false)}
+                                >
+                                    <ClearOutlined />
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onKeyPress={(e) =>
+                            e.key === 'Enter' ? onSearchTerm() : null
+                        }
+                    />
+                ) : (
+                    <IconButton
+                        sx={{ display: { xs: 'none', sm: 'flex' } }}
+                        onClick={() => setIsSearchVisible(true)}
+                    >
+                        <SearchOutlined />
+                    </IconButton>
+                )}
+
+                {/* mobile */}
+                <IconButton
+                    sx={{ display: { xs: 'flex', sm: 'none' } }}
+                    onClick={toggleSideMenu}
+                >
                     <SearchOutlined />
                 </IconButton>
 

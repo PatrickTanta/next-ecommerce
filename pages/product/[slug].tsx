@@ -69,9 +69,11 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
     const productSlugs = await dbProducts.getAllProductSlugs()
 
     const paths = productSlugs.map(({ slug }) => ({ params: { slug } }))
+    console.log('paths ', paths)
 
     return {
         paths,
+        // fallback: false
         fallback: 'blocking'
     }
 }
@@ -79,7 +81,10 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 // `getStaticPaths` requires using `getStaticProps`
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const { slug = '' } = params as { slug: string }
+    console.log('slug: ', slug)
     const product = await dbProducts.getProductBySlug(slug)
+
+    console.log('product from getStaticProps ', product)
 
     if (!product) {
         return {
