@@ -3,6 +3,7 @@ import {
     Card,
     CardActionArea,
     CardMedia,
+    Chip,
     Grid,
     Typography
 } from '@mui/material'
@@ -39,6 +40,19 @@ export const ProductCard: FC<Props> = ({ product }) => {
                     prefetch={false}
                 >
                     <CardActionArea>
+                        {product.inStock === 0 && (
+                            <Chip
+                                color="primary"
+                                label="No hay disponibles"
+                                sx={{
+                                    position: 'absolute',
+                                    zIndex: 99,
+                                    top: '10px',
+                                    left: '10px'
+                                }}
+                            />
+                        )}
+
                         <CardMedia
                             component="img"
                             className="fadeIn"
