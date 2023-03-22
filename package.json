@@ -1,32 +1,47 @@
 {
-  "name": "second-hand-car-shop",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.10.16",
-    "@mui/material": "^5.10.14",
-    "@mui/x-data-grid": "^5.17.18",
-    "@types/node": "18.11.9",
-    "@types/react": "18.0.25",
-    "@types/react-dom": "18.0.9",
-    "eslint": "8.27.0",
-    "eslint-config-next": "13.0.3",
-    "eslint-config-prettier": "^8.5.0",
-    "mongoose": "^6.9.0",
-    "next": "13.0.3",
-    "prettier": "^2.7.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-slideshow-image": "^4.1.1",
-    "swr": "^2.0.3",
-    "typescript": "4.9.3"
-  }
+    "name": "second-hand-car-shop",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "test": "jest --watch",
+        "cypress": "cypress open"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.10.5",
+        "@emotion/styled": "^11.10.5",
+        "@mui/icons-material": "^5.10.16",
+        "@mui/material": "^5.10.14",
+        "@mui/x-data-grid": "^5.17.18",
+        "@types/node": "18.11.9",
+        "@types/react": "18.0.25",
+        "@types/react-dom": "18.0.9",
+        "eslint": "8.27.0",
+        "eslint-config-next": "13.0.3",
+        "eslint-config-prettier": "^8.5.0",
+        "js-cookie": "^3.0.1",
+        "mongoose": "^6.9.0",
+        "next": "13.0.3",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-slideshow-image": "^4.1.1",
+        "swr": "^2.0.3",
+        "typescript": "4.9.3"
+    },
+    "devDependencies": {
+        "@testing-library/react": "13.3.0",
+        "@testing-library/user-event": "14.2.0",
+        "@types/js-cookie": "^3.0.3",
+        "@typescript-eslint/eslint-plugin": "5.55.0",
+        "cypress": "10.1.0",
+        "eslint-config-next": "13.2.4",
+        "husky": "8.0.3",
+        "jest": "28.1.1",
+        "jest-environment-jsdom": "28.1.1",
+        "lint-staged": "13.2.0",
+        "prettier": "2.8.5"
+    }
 }
