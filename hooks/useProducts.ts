@@ -4,7 +4,6 @@ const fetcher = (...args: [key: string]) =>
     fetch(...args).then((res) => res.json())
 
 export const useProducts = <T>(url: string, config: SWRConfiguration = {}) => {
-    console.log('`/api${url}` ', `/api${url}`)
     const { data, error } = useSWR<T>(`/api${url}`, fetcher, config)
 
     return {
